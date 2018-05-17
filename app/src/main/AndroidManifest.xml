@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.codigopanda.androidmlkitfirebase">
+    package="com.aleksandr.p">
     <meta-data
         android:name="com.google.firebase.ml.vision.DEPENDENCIES"
         android:value="text,face,label" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -15,16 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".clsMain">
+        <activity android:name="com.aleksandr.p.clsMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".clsMLDetectFaces" />
-        <activity android:name=".clsMLLabelImages" />
-        <activity android:name=".clsMLTextRecognition"></activity>
+        <activity android:name="com.aleksandr.p.clsMLDetectFaces" />
+        <activity android:name="com.aleksandr.p.clsMLLabelImages" />
+        <activity android:name="com.aleksandr.p.clsMLTextRecognition"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.codigopanda.androidmlkitfirebase;
+package com.aleksandr.p;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -35,10 +35,15 @@ public class clsMLDetectFaces extends AppCompatActivity {
     int count = 0;
     TextView textView;
 
+
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fml_detect_faces);
+
+        imageView = (ImageView) findViewById(R.id.imageView);
         FirebaseApp.initializeApp(this);
         textView = findViewById(R.id.response2);
     }
@@ -100,7 +105,6 @@ public class clsMLDetectFaces extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     Uri selectedImage = imageUri;
                     getContentResolver().notifyChange(selectedImage, null);
-                    ImageView imageView = (ImageView) findViewById(R.id.imageView);
                     ContentResolver cr = getContentResolver();
                     Bitmap bitmap;
                     try {
@@ -108,7 +112,7 @@ public class clsMLDetectFaces extends AppCompatActivity {
                                 .getBitmap(cr, selectedImage);
                         this.bitmapglobal = bitmap;
 
-                        imageView.setImageBitmap(bitmap);
+                        setImage();
                         Toast.makeText(this, selectedImage.toString(),
                                 Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
@@ -118,5 +122,9 @@ public class clsMLDetectFaces extends AppCompatActivity {
                     }
                 }
         }
+    }
+
+    private void setImage() {
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmapglobal, 1200, 1200, true));
     }
 }

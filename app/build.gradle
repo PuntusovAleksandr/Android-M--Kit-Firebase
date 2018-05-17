@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.codigopanda.androidmlkitfirebase"
+        applicationId "com.aleksandr.p"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -15,6 +15,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -30,6 +34,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision:15.0.0'
     implementation 'com.google.firebase:firebase-ml-vision-image-label-model:15.0.0'
     implementation 'com.google.firebase:firebase-ml-model-interpreter:15.0.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
 
 

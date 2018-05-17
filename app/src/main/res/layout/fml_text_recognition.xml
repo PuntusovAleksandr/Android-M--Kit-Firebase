@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="10dp"
-    tools:context="com.codigopanda.androidmlkitfirebase.clsMLTextRecognition">
+    tools:context="com.aleksandr.p.clsMLTextRecognition">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,13 +27,16 @@
                 android:textStyle="bold"
                 android:textAllCaps="false" />
 
+
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/placeholder"  />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/placeholder" />
+            >
 
             <Button
                 android:id="@+id/button"

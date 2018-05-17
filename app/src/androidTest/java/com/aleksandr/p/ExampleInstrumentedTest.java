@@ -1,4 +1,4 @@
-package com.codigopanda.androidmlkitfirebase;
+package com.aleksandr.p;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

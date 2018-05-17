@@ -1,4 +1,4 @@
-package com.codigopanda.androidmlkitfirebase;
+package com.aleksandr.p;
 
 import org.junit.Test;
 

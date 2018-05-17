@@ -1,9 +1,11 @@
-package com.codigopanda.androidmlkitfirebase;
+package com.aleksandr.p;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -21,40 +23,55 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.label.FirebaseVisionLabel;
-import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetector;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
 
 import java.io.File;
-import java.util.List;
 
-public class clsMLLabelImages extends AppCompatActivity {
+public class clsMLTextRecognition extends AppCompatActivity {
     private static final int TAKE_PICTURE = 1;
     private Uri imageUri;
     Bitmap bitmapglobal;
     TextView textView;
     String response = "";
 
+
+    ImageView imageView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fml_label_images);
+        setContentView(R.layout.fml_text_recognition);
+
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+
         FirebaseApp.initializeApp(this);
-        textView = findViewById(R.id.response3);
+        // initialize image loader (load image-urls)
+        textView = findViewById(R.id.textView);
     }
 
-    public void LabelImages(View v) {
+    public void runTextRecognition(View view) {
         textView.setText("Wait a moment");
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmapglobal);
-        FirebaseVisionLabelDetector detector = FirebaseVision.getInstance()
-                .getVisionLabelDetector();
+        FirebaseApp.initializeApp(this);
+        FirebaseVisionTextDetector detector = FirebaseVision.getInstance()
+                .getVisionTextDetector();
         detector.detectInImage(image)
                 .addOnSuccessListener(
-                        new OnSuccessListener<List<FirebaseVisionLabel>>() {
+                        new OnSuccessListener<FirebaseVisionText>() {
                             @Override
-                            public void onSuccess(List<FirebaseVisionLabel> labels) {
-                                for (FirebaseVisionLabel label : labels) {
-                                    String text = label.getLabel();
-                                    response = response + "\n" + text;
+                            public void onSuccess(FirebaseVisionText texts) {
+                                for (int i = 0; i < texts.getBlocks().size(); i++) {
+                                    FirebaseVisionText.Block block = texts.getBlocks().get(i);
+                                    for (int y = 0; y < block.getLines().size(); y++) {
+                                        FirebaseVisionText.Line line = block.getLines().get(y);
+                                        Rect boundingBox = line.getBoundingBox();
+                                        Point[] cornerPoints = line.getCornerPoints();
+                                        String text = line.getText();
+                                        response = response + "\n" + text;
+                                    }
                                 }
                                 textView.setText(response);
                             }
@@ -64,9 +81,11 @@ public class clsMLLabelImages extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 // Task failed with an exception
-                                // ...
+                                e.printStackTrace();
                             }
                         });
+
+
     }
 
     public void takePhoto(View view) {
@@ -86,7 +105,6 @@ public class clsMLLabelImages extends AppCompatActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     Uri selectedImage = imageUri;
                     getContentResolver().notifyChange(selectedImage, null);
-                    ImageView imageView = (ImageView) findViewById(R.id.imageView);
                     ContentResolver cr = getContentResolver();
                     Bitmap bitmap;
                     try {
@@ -94,7 +112,7 @@ public class clsMLLabelImages extends AppCompatActivity {
                                 .getBitmap(cr, selectedImage);
                         this.bitmapglobal = bitmap;
 
-                        imageView.setImageBitmap(bitmap);
+                        setImage();
                         Toast.makeText(this, selectedImage.toString(),
                                 Toast.LENGTH_LONG).show();
                     } catch (Exception e) {
@@ -104,5 +122,10 @@ public class clsMLLabelImages extends AppCompatActivity {
                     }
                 }
         }
+    }
+
+
+    private void setImage() {
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmapglobal, 1200, 1200, true));
     }
 }
