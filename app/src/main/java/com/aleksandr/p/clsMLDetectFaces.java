@@ -115,6 +115,8 @@ public class clsMLDetectFaces extends AppCompatActivity {
                         setImage();
                         Toast.makeText(this, selectedImage.toString(),
                                 Toast.LENGTH_LONG).show();
+
+                        FaceDetection(null);
                     } catch (Exception e) {
                         Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT)
                                 .show();

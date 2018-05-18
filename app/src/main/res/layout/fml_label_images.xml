@@ -20,13 +20,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#66bb6a"
                 android:onClick="takePhoto"
                 android:text="Take a picture"
-                android:background="#66bb6a"
+                android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textStyle="bold"
-                android:textAllCaps="false" />
-
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -41,12 +40,13 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="LabelImages"
                 android:background="#66bb6a"
+                android:onClick="LabelImages"
+                android:text="List Labels Image"
+                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:text="List Labels Image"
-                android:textAllCaps="false" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/response3"

@@ -115,6 +115,8 @@ public class clsMLTextRecognition extends AppCompatActivity {
                         setImage();
                         Toast.makeText(this, selectedImage.toString(),
                                 Toast.LENGTH_LONG).show();
+
+                        runTextRecognition(null);
                     } catch (Exception e) {
                         Toast.makeText(this, "Failed to load", Toast.LENGTH_SHORT)
                                 .show();

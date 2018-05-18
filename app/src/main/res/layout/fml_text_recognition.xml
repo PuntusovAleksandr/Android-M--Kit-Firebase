@@ -20,13 +20,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#ef5350"
                 android:onClick="takePhoto"
                 android:text="Take a picture"
-                android:background="#ef5350"
+                android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textStyle="bold"
-                android:textAllCaps="false" />
-
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -36,18 +35,18 @@
                 android:layout_margin="10dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/placeholder" />
-            >
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#ef5350"
                 android:onClick="runTextRecognition"
                 android:text="Text Recognition"
-                android:background="#ef5350"
+                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textStyle="bold"
-                android:textAllCaps="false" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textView"

@@ -45,7 +45,8 @@
                 android:text="Get Faces"
                 android:textAllCaps="false"
                 android:textColor="#fff"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/response2"
